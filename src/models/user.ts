@@ -8,6 +8,12 @@ class UserModel {
     this.connection = connection;
   }
 
+  public async getAll(): Promise<User[]> {
+    const [users] = await this.connection.execute('SELECT * FROM Trybesmith.Users');
+
+    return users as User[];
+  }
+
   public async create(user: User): Promise<User> {
     const { username, classe, level, password } = user;
 
