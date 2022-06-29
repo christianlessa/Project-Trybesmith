@@ -25,9 +25,8 @@ class UserController {
     const user = req.body;
 
     const userCreated = await this.userService.create(user);
-    
     const token = generatedToken(userCreated.username, userCreated.id);
-
+    
     return res.status(201).json({ token });
   };
 }

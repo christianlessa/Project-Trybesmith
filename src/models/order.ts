@@ -21,6 +21,6 @@ class OrderModel {
 
     return created.insertId;
   }
-}  
+}
 
 export default OrderModel;

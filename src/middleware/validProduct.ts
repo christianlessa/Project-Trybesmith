@@ -56,13 +56,6 @@ class ValidateProducts {
       return res.status(422).json({ message: '"productsIds" must include only numbers' });
     }
 
-    // productsIds.map((product) => {
-    //   if (!product) {
-    //     return res.status(422).json({ message: '"productsIds" must include only numbers' });
-    //   }
-    //   return next();
-    // });
-
     next();
   };
 }
