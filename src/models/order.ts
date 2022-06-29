@@ -10,6 +10,7 @@ class OrderModel {
 
   public async getAll(): Promise<Order[]> {
     const [orders] = await this.connection.execute('SELECT * FROM Trybesmith.Orders');
+    
     return orders as Order[];
   }
 

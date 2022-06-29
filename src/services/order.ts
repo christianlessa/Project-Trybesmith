@@ -17,12 +17,22 @@ class OrderService {
   public async getAll(): Promise<Order[]> {
     const orders = await this.orderModel.getAll();
 
-    return orders;
+    const ordersByIds = await Promise.all(orders.map(async ({ id, userId }) => {
+      const productsByOrderId = await this.productModel.getByOrderId(id);
+      const productsIds = productsByOrderId.map((product) => product.id);
+
+      return ({
+        id,
+        userId,
+        productsIds,
+      });
+    }));
+
+    return ordersByIds;
   }
 
   public async create(id: number, productsId: number[]): Promise<ProductsIds> {
     const orderId = await this.orderModel.create(id);
-
     productsId.map((product) => this.productModel.update(orderId, product));
 
     return {

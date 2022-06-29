@@ -21,6 +21,7 @@ class OrderController {
     const { productsIds } = req.body;
 
     const created = await this.orderService.create(id, productsIds);
+    
     return res.status(201).json(created);
   };
 }

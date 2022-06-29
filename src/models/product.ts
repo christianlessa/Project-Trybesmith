@@ -14,6 +14,15 @@ class ProductModel {
     return products as Product[];
   }
 
+  public async getByOrderId(orderId: number): Promise<Product[]> {
+    const [productsByOrderId] = await this.connection.execute(
+      'SELECT * FROM Trybesmith.Products WHERE orderId = ?',
+      [orderId],
+    );
+
+    return productsByOrderId as Product[];
+  }
+
   public async create(name: string, amount: string): Promise<Product> {
     const [created] = await this.connection.execute<ResultSetHeader>(
       'INSERT INTO Trybesmith.Products (name, amount) VALUES (?, ?)',
