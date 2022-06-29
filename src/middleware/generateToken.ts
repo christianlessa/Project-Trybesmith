@@ -7,7 +7,8 @@ const jwtConfig:object = {
   algorithm: 'HS256',
 };
 
-const generatedToken = (username:string, id:number) => 
+const generatedToken = (username:string, id:number) => {
   jwt.sign({ username, id }, secret, jwtConfig);
+};
 
 export default generatedToken;
